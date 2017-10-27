@@ -377,4 +377,14 @@ class Terrain
     {
         return $this->arrival;
     }
+
+    /**
+     * Get arrivals
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArrivals()
+    {
+        return $this->arrivals;
+    }
 }

@@ -96,9 +96,7 @@ class User
     private $note;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="reviews", type="integer", nullable=true)
+     * @ORM\OneToMany(targetEntity="WCS\CoavBundle\Entity\Review", mappedBy="plane")
      */
     private $reviews;
 
@@ -454,5 +452,29 @@ class User
     public function getReservations()
     {
         return $this->reservations;
+    }
+
+    /**
+     * Set pilots
+     *
+     * @param \WCS\CoavBundle\Entity\Flight $pilots
+     *
+     * @return User
+     */
+    public function setPilots(\WCS\CoavBundle\Entity\Flight $pilots = null)
+    {
+        $this->pilots = $pilots;
+
+        return $this;
+    }
+
+    /**
+     * Get pilots
+     *
+     * @return \WCS\CoavBundle\Entity\Flight
+     */
+    public function getPilots()
+    {
+        return $this->pilots;
     }
 }
