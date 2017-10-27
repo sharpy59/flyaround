@@ -192,45 +192,4 @@ class PlaneModel
     {
         return $this->isAvailable;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->plans = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add plan
-     *
-     * @param \WCS\CoavBundle\Entity\Flight $plan
-     *
-     * @return PlaneModel
-     */
-    public function addPlan(\WCS\CoavBundle\Entity\Flight $plan)
-    {
-        $this->plans[] = $plan;
-
-        return $this;
-    }
-
-    /**
-     * Remove plan
-     *
-     * @param \WCS\CoavBundle\Entity\Flight $plan
-     */
-    public function removePlan(\WCS\CoavBundle\Entity\Flight $plan)
-    {
-        $this->plans->removeElement($plan);
-    }
-
-    /**
-     * Get plans
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPlans()
-    {
-        return $this->plans;
-    }
 }
