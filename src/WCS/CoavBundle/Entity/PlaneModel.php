@@ -16,7 +16,7 @@ class PlaneModel
     /**
      * @ORM\OneToMany(targetEntity="WCS\CoavBundle\Entity\Flight", mappedBy="plane")
      */
-    private $plans;
+    private $reservations;
 
     /**
      * @var int
@@ -232,5 +232,39 @@ class PlaneModel
     public function getPlans()
     {
         return $this->plans;
+    }
+
+    /**
+     * Add reservation
+     *
+     * @param \WCS\CoavBundle\Entity\Flight $reservation
+     *
+     * @return PlaneModel
+     */
+    public function addReservation(\WCS\CoavBundle\Entity\Flight $reservation)
+    {
+        $this->reservations[] = $reservation;
+
+        return $this;
+    }
+
+    /**
+     * Remove reservation
+     *
+     * @param \WCS\CoavBundle\Entity\Flight $reservation
+     */
+    public function removeReservation(\WCS\CoavBundle\Entity\Flight $reservation)
+    {
+        $this->reservations->removeElement($reservation);
+    }
+
+    /**
+     * Get reservations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReservations()
+    {
+        return $this->reservations;
     }
 }

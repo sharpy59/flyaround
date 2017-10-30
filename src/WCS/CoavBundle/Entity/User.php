@@ -18,7 +18,7 @@ class User
      */
     private $pilots;
     /**
-    * @ORM\ManyToMany(targetEntity="WCS\CoavBundle\Entity\Reservation", inversedBy="passengers")
+    * @ORM\ManyToMany(targetEntity="WCS\CoavBundle\Entity\Reservation", inversedBy="passenger")
     * @ORM\JoinColumn(nullable=false)
     */
     private $reservations;
@@ -96,7 +96,7 @@ class User
     private $note;
 
     /**
-     * @ORM\OneToMany(targetEntity="WCS\CoavBundle\Entity\Review", mappedBy="plane")
+     * @ORM\OneToMany(targetEntity="WCS\CoavBundle\Entity\Review", mappedBy="reviewAuthor")
      */
     private $reviews;
 
