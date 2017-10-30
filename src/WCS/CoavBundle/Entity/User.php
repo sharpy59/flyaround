@@ -499,6 +499,6 @@ class User
      */
     public function removeReview(\WCS\CoavBundle\Entity\Review $review)
     {
-        $this->reviews->removeElement($review);
+        $this->reviews->removeElemen($review);
     }
 }

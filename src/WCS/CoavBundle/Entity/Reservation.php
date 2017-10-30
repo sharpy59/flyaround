@@ -192,6 +192,7 @@ class Reservation
     public function __construct()
     {
         $this->passenger = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->passengers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

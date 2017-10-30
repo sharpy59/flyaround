@@ -15,7 +15,6 @@ class Terrain
     /* adding personal methods*/
     public function __toString()
     {
-        // TODO: Implement __toString() method.
         return $this->icao . "-" . $this->name . "" . $this->zipcode;
     }
 
@@ -308,6 +307,7 @@ class Terrain
     public function __construct()
     {
         $this->departures = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->arrival = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

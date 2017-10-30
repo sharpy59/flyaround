@@ -198,6 +198,7 @@ class PlaneModel
     public function __construct()
     {
         $this->plans = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
