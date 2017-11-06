@@ -2,6 +2,7 @@
 
 namespace WCS\CoavBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,12 +14,17 @@ use Doctrine\ORM\Mapping as ORM;
 class User
 {
 
+    public function __toString()
+    {
+        return $this->firstName . " " . $this->lastName;
+    }
+
     /**
-     * @ORM\OneToOne(targetEntity="WCS\CoavBundle\Entity\Flight", mappedBy="pilot")
+     * @ORM\OneToMany(targetEntity="WCS\CoavBundle\Entity\Flight", mappedBy="pilot")
      */
     private $pilots;
     /**
-    * @ORM\ManyToMany(targetEntity="WCS\CoavBundle\Entity\Reservation", inversedBy="passenger")
+    * @ORM\ManyToMany(targetEntity="WCS\CoavBundle\Entity\Reservation", inversedBy="passengers")
     * @ORM\JoinColumn(nullable=false)
     */
     private $reservations;
@@ -358,7 +364,7 @@ class User
     /**
      * Get reviews
      *
-     * @return int
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getReviews()
     {
@@ -417,7 +423,10 @@ class User
      */
     public function __construct()
     {
-        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reservations = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
+        $this->pilots = new ArrayCollection();
+        $this->creationDate = new \DateTime();
     }
 
     /**
@@ -471,7 +480,7 @@ class User
     /**
      * Get pilots
      *
-     * @return \WCS\CoavBundle\Entity\Flight
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPilots()
     {
@@ -499,6 +508,30 @@ class User
      */
     public function removeReview(\WCS\CoavBundle\Entity\Review $review)
     {
-        $this->reviews->removeElemen($review);
+        $this->reviews->removeElement($review);
+    }
+
+    /**
+     * Add pilot
+     *
+     * @param \WCS\CoavBundle\Entity\Flight $pilot
+     *
+     * @return User
+     */
+    public function addPilot(\WCS\CoavBundle\Entity\Flight $pilot)
+    {
+        $this->pilots[] = $pilot;
+
+        return $this;
+    }
+
+    /**
+     * Remove pilot
+     *
+     * @param \WCS\CoavBundle\Entity\Flight $pilot
+     */
+    public function removePilot(\WCS\CoavBundle\Entity\Flight $pilot)
+    {
+        $this->pilots->removeElement($pilot);
     }
 }

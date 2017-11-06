@@ -13,10 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class PlaneModel
 {
 
+    public function __toString()
+    {
+        return $this->model;
+    }
+
     /**
      * @ORM\OneToMany(targetEntity="WCS\CoavBundle\Entity\Flight", mappedBy="plane")
      */
-    private $reservations;
+    private $flight;
 
     /**
      * @var int
@@ -267,5 +272,39 @@ class PlaneModel
     public function getReservations()
     {
         return $this->reservations;
+    }
+
+    /**
+     * Add flight
+     *
+     * @param \WCS\CoavBundle\Entity\Flight $flight
+     *
+     * @return PlaneModel
+     */
+    public function addFlight(\WCS\CoavBundle\Entity\Flight $flight)
+    {
+        $this->flight[] = $flight;
+
+        return $this;
+    }
+
+    /**
+     * Remove flight
+     *
+     * @param \WCS\CoavBundle\Entity\Flight $flight
+     */
+    public function removeFlight(\WCS\CoavBundle\Entity\Flight $flight)
+    {
+        $this->flight->removeElement($flight);
+    }
+
+    /**
+     * Get flight
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFlight()
+    {
+        return $this->flight;
     }
 }

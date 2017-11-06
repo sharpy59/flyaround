@@ -36,12 +36,11 @@ class Reservation
     private $publicationDate;
 
 
-
     /**
      * @ORM\ManyToMany(targetEntity="WCS\CoavBundle\Entity\User", mappedBy="reservations")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $passenger;
+    private $passengers;
 
     /**
      * @ORM\ManyToOne(targetEntity="WCS\CoavBundle\Entity\Flight", inversedBy="reservations")
@@ -116,30 +115,6 @@ class Reservation
     }
 
     /**
-     * Set passenger
-     *
-     * @param string $passenger
-     *
-     * @return Reservation
-     */
-    public function setPassenger($passenger)
-    {
-        $this->passenger = $passenger;
-
-        return $this;
-    }
-
-    /**
-     * Get passenger
-     *
-     * @return string
-     */
-    public function getPassenger()
-    {
-        return $this->passenger;
-    }
-
-    /**
      * Set flight
      *
      * @param string $flight
@@ -191,7 +166,6 @@ class Reservation
      */
     public function __construct()
     {
-        $this->passenger = new \Doctrine\Common\Collections\ArrayCollection();
         $this->passengers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -204,7 +178,7 @@ class Reservation
      */
     public function addPassenger(\WCS\CoavBundle\Entity\User $passenger)
     {
-        $this->passenger[] = $passenger;
+        $this->passengers[] = $passenger;
 
         return $this;
     }
@@ -216,7 +190,7 @@ class Reservation
      */
     public function removePassenger(\WCS\CoavBundle\Entity\User $passenger)
     {
-        $this->passenger->removeElement($passenger);
+        $this->passengers->removeElement($passenger);
     }
 
     /**
