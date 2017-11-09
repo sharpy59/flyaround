@@ -3,9 +3,11 @@
 namespace WCS\CoavBundle\Controller;
 
 use WCS\CoavBundle\Entity\Review;
+use WCS\CoavBundle\Form\ReviewType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Review controller.
@@ -40,7 +42,7 @@ class ReviewController extends Controller
     public function newAction(Request $request)
     {
         $review = new Review();
-        $form = $this->createForm('WCS\CoavBundle\Form\ReviewType', $review);
+        $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
