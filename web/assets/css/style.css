@@ -1,0 +1,11 @@
+h1{
+  color: red;
+  text-align: center;
+}
+li{
+  display: inline;
+}
+li a{
+  text-align: center;
+  color:#5eb5e0;
+}

@@ -2,6 +2,7 @@
 
 namespace WCS\CoavBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,8 +14,13 @@ use Doctrine\ORM\Mapping as ORM;
 class User
 {
 
+    public function __toString()
+    {
+        return $this->firstName . " " . $this->lastName;
+    }
+
     /**
-     * @ORM\OneToOne(targetEntity="WCS\CoavBundle\Entity\Flight", mappedBy="pilot")
+     * @ORM\OneToMany(targetEntity="WCS\CoavBundle\Entity\Flight", mappedBy="pilot")
      */
     private $pilots;
     /**
@@ -96,7 +102,7 @@ class User
     private $note;
 
     /**
-     * @ORM\OneToMany(targetEntity="WCS\CoavBundle\Entity\Review", mappedBy="plane")
+     * @ORM\OneToMany(targetEntity="WCS\CoavBundle\Entity\Review", mappedBy="reviewAuthor")
      */
     private $reviews;
 
@@ -358,7 +364,7 @@ class User
     /**
      * Get reviews
      *
-     * @return int
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getReviews()
     {
@@ -417,7 +423,10 @@ class User
      */
     public function __construct()
     {
-        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reservations = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
+        $this->pilots = new ArrayCollection();
+        $this->creationDate = new \DateTime();
     }
 
     /**
@@ -471,10 +480,34 @@ class User
     /**
      * Get pilots
      *
-     * @return \WCS\CoavBundle\Entity\Flight
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPilots()
     {
         return $this->pilots;
+    }
+
+    /**
+     * Add review
+     *
+     * @param \WCS\CoavBundle\Entity\Review $review
+     *
+     * @return User
+     */
+    public function addReview(\WCS\CoavBundle\Entity\Review $review)
+    {
+        $this->reviews[] = $review;
+
+        return $this;
+    }
+
+    /**
+     * Remove review
+     *
+     * @param \WCS\CoavBundle\Entity\Review $review
+     */
+    public function removeReview(\WCS\CoavBundle\Entity\Review $review)
+    {
+        $this->reviews->removeElement($review);
     }
 }
