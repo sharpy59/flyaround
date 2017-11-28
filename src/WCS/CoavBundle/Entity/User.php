@@ -78,13 +78,6 @@ class User extends BaseUser
     private $creationDate;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=16)
-     */
-    private $role;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="note", type="smallint", nullable=true)
@@ -120,21 +113,6 @@ class User extends BaseUser
     {
         return $this->id;
     }
-
-    /**
-     * Set userName
-     *
-     * @param string $userName
-     *
-     * @return User
-     */
-    public function setUserName($userName)
-    {
-        $this->userName = $userName;
-
-        return $this;
-    }
-
 
 
     /**
@@ -185,29 +163,6 @@ class User extends BaseUser
         return $this->lastName;
     }
 
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
 
     /**
      * Set phoneNumber
@@ -279,30 +234,6 @@ class User extends BaseUser
     public function getCreationDate()
     {
         return $this->creationDate;
-    }
-
-    /**
-     * Set role
-     *
-     * @param string $role
-     *
-     * @return User
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->role;
     }
 
     /**

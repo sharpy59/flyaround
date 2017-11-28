@@ -16,7 +16,8 @@ class RegistrationType extends AbstractType
                 ->add('lastName')
                 ->add('phoneNumber')
                 ->add('birthDate')
-                ->add('isACertifiedPilot');
+                ->add('isACertifiedPilot')
+                ->add('isActive');
     }
 
     /**
